@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 @section('title')
-	Danh mục
+	Danh mục sản phẩm
 @endsection
 @section('content')
 	{{-- main --}}
