@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Backend\ProductRequest;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -91,6 +92,12 @@ class ProductController extends Controller
     public function getAddProduct()
     {
         return view('backend.product.addproduct');
+    }
+
+    public function postAddProduct(ProductRequest $request)
+    {
+        // dd($request->all());
+        return redirect('/admin/product')->with('thongbao', )
     }
 
     public function getEditProduct()

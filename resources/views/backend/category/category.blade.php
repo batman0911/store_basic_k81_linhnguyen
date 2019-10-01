@@ -20,6 +20,9 @@
 				<h1 class="page-header">Quản lý danh mục</h1>
 			</div>
 		</div>
+
+		{{ showError($errors, 'name') }}
+
 		<!--/.row-->
 		<div class="row">
 			<div class="col-md-12">
@@ -27,7 +30,8 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-5">
-
+								<form action="" method="post">
+									@csrf
 								<div class="form-group">
 									<label for="">Danh mục cha:</label>
 									<select class="form-control" name="" id="">
@@ -50,6 +54,7 @@
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary">Thêm danh mục</button>
+							</form>
 							</div>
 							<div class="col-md-7">
 								<div class="alert bg-success" role="alert">

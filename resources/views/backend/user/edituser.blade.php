@@ -32,8 +32,8 @@
                                     <input type="text" name="password" class="form-control" value="123456">
                                 </div>
                                 <div class="form-group">
-                                    <label>Full name</label>
-                                    <input type="full" name="full" class="form-control" value="Nguyễn thế phúc">
+                                    <label>full name</label>
+                                    <input type="name" name="name" class="form-control" value="Nguyễn thế phúc">
                                 </div>
                                 <div class="form-group">
                                     <label>Address</label>

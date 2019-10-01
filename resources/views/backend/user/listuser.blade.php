@@ -36,14 +36,14 @@
 										<use xlink:href="#stroked-checkmark"></use>
 									</svg>Đã thêm thành công<a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
 								</div>
-								<a href="adduser.html" class="btn btn-primary">Thêm Thành viên</a>
+								<a href="{{ asset('admin') }}/user/add" class="btn btn-primary">Thêm Thành viên</a>
 								<table class="table table-bordered" style="margin-top:20px;">
 
 									<thead>
 										<tr class="bg-primary">
 											<th>ID</th>
 											<th>Email</th>
-											<th>Full</th>
+											<th>Full Name</th>
 											<th>Address</th>
                                             <th>Phone</th>
                                             <th>Level</th>

@@ -11,6 +11,8 @@
 |
 */
 
+
+
 // ---------------FRONTEND
 
 // Static pages
@@ -26,6 +28,7 @@ Route::group(['prefix' => 'cart'], function() {
 // Checkout routes
 Route::group(['prefix' => 'checkout'], function() {
     Route::get('/', 'Frontend\CheckoutController@getCheckout');
+    Route::post('/', 'Frontend\CheckoutController@postCheckout');
     Route::get('/complete', 'Frontend\CheckoutController@getComplete');
 });
 
@@ -36,8 +39,9 @@ Route::group(['prefix' => 'product'], function() {
 });
 
 // ---------------BACKEND
-Route::get('/login', 'Backend\LoginController@getLogin');
+Route::get('/login', 'Backend\LoginController@getLogin')->name('getLogin');
 Route::post('/login', 'Backend\LoginController@postLogin');
+Route::get('/logout', 'Backend\LoginController@getLogout');
 
 Route::group(['prefix' => 'admin'], function () {
     
@@ -77,7 +81,9 @@ Route::group(['prefix' => 'admin'], function () {
     // Category
     Route::group(['prefix' => 'category'], function () {
         Route::get('', 'Backend\CategoryController@getCategory');
+        Route::post('', 'Backend\CategoryController@postCategory');
         Route::get('/edit', 'Backend\CategoryController@getEditCategory');
+        
     });
 
     // Order
@@ -91,6 +97,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', 'Backend\ProductController@getListProduct');
         Route::get('/add', 'Backend\ProductController@getAddProduct');
+        Route::post('/add', 'Backend\ProductController@postAddProduct');
         Route::get('/edit', 'Backend\ProductController@getEditProduct');
     });
 
@@ -98,6 +105,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', 'Backend\UserController@getListUser');
         Route::get('/add', 'Backend\UserController@getAddUser');
+        Route::post('/add', 'Backend\UserController@postAddUser');
         Route::get('/edit', 'Backend\UserController@getEditUser');
     });
 
