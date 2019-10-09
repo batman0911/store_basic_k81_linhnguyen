@@ -12,35 +12,35 @@ class LoginController extends Controller
 {
     public function getLogin()
     {
-        // return view('backend.login');
-        if (Auth::check()) {
-            return redirect('/amdin');
-        }
-        else {
-            return redirect('/login');
-        }
+        return view('backend.login');
+        // if (Auth::check()) {
+        //     return redirect('/admin');
+        // }
+        // else {
+        //     return redirect('/login');
+        // }
     }
 
     public function postLogin(LoginRequest $request)
     {
         // dd($request->all());
-        $login = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
+        // $login = [
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        // ];
 
-        if (Auth::attempt($login)) {
-            return redirect('/admin');
-        }
-        else {
-            return redirect()->back()->with('alert', 'Đăng nhập không thành công');
-        }
+        // if (Auth::attempt($login)) {
+        //     return redirect('/admin');
+        // }
+        // else {
+        //     return redirect()->back()->with('alert', 'Đăng nhập không thành công');
+        // }
     }
 
     public function getLogout()
     {
-        Auth::logout();
-        return redirect()->route('getLogin');
+        // Auth::logout();
+        // return redirect()->route('getLogin');
     }
 
 }

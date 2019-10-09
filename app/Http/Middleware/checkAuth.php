@@ -15,6 +15,21 @@ class checkAuth
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        // return $next($request);
+        // User đã đăng nhập
+        if (Auth::check()) {
+            $user = Auth::user();
+            // nếu level == 1 thì cho qua 
+            if ($user->level == 1) {
+                return next($request);
+            }
+            else {
+                Auth::logout();
+                return redirect()->route('getLogin');
+            }
+        }
+        else {
+            return redirect('/login');
+        }
     }
 }

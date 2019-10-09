@@ -20,8 +20,8 @@ class CreateProductOrdersTable extends Migration
             $table->decimal('price', 18);
             $table->tinyInteger('quantity')->default(1);
             $table->string('image');
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->unsignedBigInteger('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -38,6 +38,8 @@ Route::group(['prefix' => 'product'], function() {
     Route::get('/detail', 'Frontend\ProductController@getDetail');
 });
 
+
+
 // ---------------BACKEND
 Route::get('/login', 'Backend\LoginController@getLogin')->name('getLogin');
 Route::post('/login', 'Backend\LoginController@postLogin');
