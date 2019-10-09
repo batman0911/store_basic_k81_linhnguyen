@@ -41,44 +41,14 @@ Route::group(['prefix' => 'product'], function() {
 
 
 // ---------------BACKEND
-Route::get('/login', 'Backend\LoginController@getLogin')->name('getLogin');
+Route::get('/login', 'Backend\LoginController@getLogin')->middleware('CheckLogout');
 Route::post('/login', 'Backend\LoginController@postLogin');
-Route::get('/logout', 'Backend\LoginController@getLogout');
 
-Route::group(['prefix' => 'admin'], function () {
-    
-    // // Home routes
-    // Route::get('/', function () {
-    //     return view('backend.index');
-    // });
-    
-    // // User routes
-    // // Route::get('users', 'Backend.UserController@getList');
-    // // Route::get('users/edit/{id}', 'Backend.UserController@getEdit');
-    // // Route::post('users/edit/{id}', 'Backend.UserController@postEdit');
-    // // Route::get('users/add', 'Backend.UserController@getAdd');
-    // // Route::post('users/add', 'Backend.UserController@postAdd');
-    // Route::resource('user', 'Backend\UserController');
-
-    // // Product routes
-    // Route::resource('product', 'Backend\ProductController');
-
-    // // Category routes
-    // // Route::resource('category', 'Backend.CategoryController');
-    // // Route::get('category', 'Backend\CategoryController@getListCat');
-
-    
-
-    // // Order routes
-    // Route::get('order', function ($id) {
-        
-    // });
-
-    // Login
-    
-    
+Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogin'], function () {
     // 
     Route::get('/', 'Backend\IndexController@getIndex');
+    // Logout
+    Route::get('logout', 'Backend\IndexController@logout');
 
     // Category
     Route::group(['prefix' => 'category'], function () {

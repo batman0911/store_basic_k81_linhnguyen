@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Auth;
+// use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\LoginRequest;
@@ -23,18 +24,15 @@ class LoginController extends Controller
 
     public function postLogin(LoginRequest $request)
     {
-        // dd($request->all());
-        // $login = [
-        //     'email' => $request->email,
-        //     'password' => $request->password,
-        // ];
+        $email = $request->email;
+        $password = $request->password;
 
-        // if (Auth::attempt($login)) {
-        //     return redirect('/admin');
-        // }
-        // else {
-        //     return redirect()->back()->with('alert', 'Đăng nhập không thành công');
-        // }
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            return redirect('admin');
+        }
+        else {
+            return redirect()->back()->with('thongbao', 'Tài khoản hoặc mật khẩu không chính xác')->withInput();
+        }
     }
 
     public function getLogout()

@@ -97,7 +97,7 @@ class ProductController extends Controller
     public function postAddProduct(ProductRequest $request)
     {
         // dd($request->all());
-        return redirect('/admin/product')->with('thongbao', )
+        // return redirect('/admin/product')->with('thongbao', )
     }
 
     public function getEditProduct()
