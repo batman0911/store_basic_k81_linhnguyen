@@ -25,35 +25,42 @@
 
 		<div class="row">
 			<div class="col-md-12">
+				@if (session('thongbao'))
+					<div class="alert alert-success" role="alert">
+						<strong>{{ session('thongbao') }}</strong>
+					</div>
+				@endif
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-5">
-
-								<div class="form-group">
-									<label for="">Danh mục cha:</label>
-									<select class="form-control" name="parent" >
-										<option>----ROOT----</option>
-										{{ getCategory($categories, 0, "", $category->parent_id) }}
-									</select>
-								</div>
-								<div class="form-group">
-									<label for="">Tên Danh mục</label>
-									<input type="text" class="form-control" name="name"  placeholder="Tên danh mục mới" value="{{ $category->name }}">
-									{{-- <div class="alert bg-danger" role="alert">
-										<svg class="glyph stroked cancel">
-											<use xlink:href="#stroked-cancel"></use>
-										</svg>Tên danh mục đã tồn tại!<a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
-									</div> --}}
-								</div>
-								<button type="submit" class="btn btn-primary">Sửa danh mục</button>
+								<form action="" method="post">
+									@csrf
+									<div class="form-group">
+										<label for="">Danh mục cha:</label>
+										<select class="form-control" name="parent" >
+											<option>----ROOT----</option>
+											{{ getCategory($categories, 0, "", $category->parent_id) }}
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="">Tên Danh mục</label>
+										<input type="text" class="form-control" name="name"  placeholder="Tên danh mục mới" value="{{ $category->name }}">
+										{{-- <div class="alert bg-danger" role="alert">
+											<svg class="glyph stroked cancel">
+												<use xlink:href="#stroked-cancel"></use>
+											</svg>Tên danh mục đã tồn tại!<a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+										</div> --}}
+									</div>
+									<button type="submit" class="btn btn-primary">Sửa danh mục</button>
+								</form>
 							</div>
 							<div class="col-md-7">
-								<div class="alert bg-success" role="alert">
+								{{-- <div class="alert bg-success" role="alert">
 									<svg class="glyph stroked checkmark">
 										<use xlink:href="#stroked-checkmark"></use>
 									</svg> Đã sửa danh mục thành công! <a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
-								</div>
+								</div> --}}
 								<h3 style="margin: 0;"><strong>Phân cấp Menu</strong></h3>
 								<div class="vertical-menu">
 									<div class="item-menu active">Danh mục </div>

@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogin'], function () {
         Route::get('', 'Backend\CategoryController@getCategory');
         Route::post('', 'Backend\CategoryController@postCategory');
         Route::get('/edit/{cat_id}', 'Backend\CategoryController@getEditCategory');
+        Route::post('/edit/{cat_id}', 'Backend\CategoryController@postEditCategory');
         Route::get('/delete/{cat_id}', 'Backend\CategoryController@delCategory');
     });
 

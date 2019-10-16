@@ -35,6 +35,16 @@ class CategoryController extends Controller
         return view('backend.category.editcategory', $data);
     }
 
+    public function postEditCategory($cat_id, request $request)
+    {
+        $category = Category::findOrFail($cat_id);
+        $category->name = $request->name;
+        $category->slug = str_slug($request->name);
+        $category->parent_id = $request->parent;
+        $category->save();
+        return redirect()->back()->with('thongbao', 'Đẫ sửa thành công!');
+    }
+
     public function delCategory($cat_id)
     {
         // Tìm danh mục muốn xóa
