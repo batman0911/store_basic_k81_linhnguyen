@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\ProductRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -86,7 +87,9 @@ class ProductController extends Controller
 
     public function getListProduct()
     {
-        return view('backend.product.listproduct');
+        return Product::paginate(4);
+        // $data['products'] = Product::paginate(4);
+        // return view('backend.product.listproduct', $data);
     }
 
     public function getAddProduct()

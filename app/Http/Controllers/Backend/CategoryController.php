@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\models\Category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\CategoryRequest;
 use App\Http\Controllers\Controller;
