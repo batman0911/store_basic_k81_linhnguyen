@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Backend\ProductRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -87,14 +88,15 @@ class ProductController extends Controller
 
     public function getListProduct()
     {
-        return Product::paginate(4);
-        // $data['products'] = Product::paginate(4);
-        // return view('backend.product.listproduct', $data);
+        // return Product::paginate(4);
+        $data['products'] = Product::paginate(4);
+        return view('backend.product.listproduct', $data);
     }
 
     public function getAddProduct()
     {
-        return view('backend.product.addproduct');
+        $data['categories'] = Category::all();
+        return view('backend.product.addproduct', $data);
     }
 
     public function postAddProduct(ProductRequest $request)

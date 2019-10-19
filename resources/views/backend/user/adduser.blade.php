@@ -17,10 +17,10 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"><i class="fas fa-user"></i> Thêm thành viên</div>
                     <div class="panel-body">
-                        <form action="" method="post">
-                            @csrf
+                        
                         <div class="row justify-content-center" style="margin-bottom:40px">
-
+                            <form action="" method="POST">
+                            @csrf
                             <div class="col-md-8 col-lg-8 col-lg-offset-2">
                              
                                 <div class="form-group">
@@ -37,7 +37,7 @@
                                     {{ showError($errors, 'password') }}
                                 </div>
                                 <div class="form-group">
-                                    <label>full name</label>
+                                    <label>Full name</label>
                                     <input type="name" name="name" class="form-control">
                                     {{ showError($errors, 'name') }}
                                 </div>
@@ -51,16 +51,17 @@
                                     <input type="phone" name="phone" class="form-control">
                                     {{ showError($errors, 'phone') }}
                                 </div>
-                              
                                 <div class="form-group">
                                     <label>Level</label>
                                     <select name="level" class="form-control">
                                         <option value="1">admin</option>
-                                        <option selected value="2">user</option>
+                                        <option value="2">user</option>
                                     </select>
                                     {{ showError($errors, 'level') }}
                                 </div>
+
                             </div>
+
                             <div class="row">
                                 <div class="col-md-8 col-lg-8 col-lg-offset-2 text-right">
                                   
@@ -69,9 +70,9 @@
                                 </div>
                             </div>
                            
-
+                            </form>
                         </div>
-                    </form>
+                    
                         <div class="clearfix"></div>
                     </div>
                 </div>

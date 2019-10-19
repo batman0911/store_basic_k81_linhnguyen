@@ -85,4 +85,53 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogin'], function () {
 
 });
 
+// Học query 
+Route::group(['prefix' => 'query'], function () {
+
+    // insert data
+    Route::get('insert', function () {
+        DB::table('users')->insert([
+            ['email' => 'manhlinha3_01@gmail.com', 'name' => 'Linh Nguyen 01', 'password' => bcrypt('123456'), 'address' => 'zone 01', 'phone' => '0969880165', 'level' => '1'],
+            ['email' => 'manhlinha3_02@gmail.com', 'name' => 'Linh Nguyen 02', 'password' => bcrypt('123456'), 'address' => 'zone 01', 'phone' => '0969880166', 'level' => '1'],
+            ['email' => 'manhlinha3_03@gmail.com', 'name' => 'Linh Nguyen 03', 'password' => bcrypt('123456'), 'address' => 'zone 01', 'phone' => '0969880167', 'level' => '1'],
+            ['email' => 'manhlinha3_04@gmail.com', 'name' => 'Linh Nguyen 04', 'password' => bcrypt('123456'), 'address' => 'zone 01', 'phone' => '0969880168', 'level' => '1']
+        ]);
+    });
+
+    // update data
+    Route::get('update', function () {
+        DB::table('users')->where('email', 'manhlinha3_04@gmail.com')->update(['email' => 'daicalinh@mail.com']);
+    });
+
+    // deleta data
+    Route::get('delete', function () {
+        DB::table('users')->where('email', 'manhlinha3_03@gmail.com')->delete();
+    });
+
+    // lấy dữ liệu bằng querybuilder
+    Route::get('get-all-data', function () {
+        $users = DB::table('users')->get();
+        dd($users);
+    });
+
+    // chọn các trường cần lấy dữ liệu 
+    Route::get('get-select', function () {
+        $users = DB::table('users')->select('id', 'name', 'email')->get();
+        dd($users);
+    });
+
+    // câu lệnh where
+    Route::get('where-and', function () {
+        $users = DB::table('users')->where([
+            ['email', '=', 'daicalinh@mail.com'],
+            ['level', '=', '1']
+        ])->get();
+
+        // $users = DB::table('users')->where('email', '=', 'daicalinh@mail.com')->get();
+        dd($users);
+    });
+
+    
+});
+
 
