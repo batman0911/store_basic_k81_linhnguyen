@@ -63,8 +63,8 @@
                                             <td>{{ $user->phone }}</td>
                                             <td>{{ $user->level }}</td>
 											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+												<a href="/admin/user/edit/{{ $user->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
+												<a href="/admin/user/del/{{ $user->id }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 											</td>
                                         </tr>
                                         

@@ -17,7 +17,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Thêm sản phẩm</div>
                     <div class="panel-body">
-                        <form action="" method="post">
+                        <form action="" method="post" enctype="multipart/form-data"> <!-- cần có multipart/form-data để upload được file -->
                             @csrf
                         <div class="row" style="margin-bottom:40px">
                              
@@ -108,7 +108,8 @@
     <!--end main-->
     
     
-    
+    @section('script')
+    @parent
     <script>
      function changeImg(input){
 		    //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
@@ -129,5 +130,5 @@
 		});
 
     </script>
-
+    @endsection
 @endsection

@@ -16,6 +16,8 @@ class IndexController extends Controller
     public function logout()
     {
         Auth::logout();
+        // Xóa session Auth::user()
+        // Chuyển Auth::check() thành false
         return redirect('login');
     }
 }

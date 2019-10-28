@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+// use App\Http\Requests\Backend\UserRequest;
 use App\Http\Requests\Backend\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -87,7 +88,7 @@ class UserController extends Controller
 
     public function getListUser()
     {
-        $data['users'] = User::paginate(2);
+        $data['users'] = User::paginate(5);
         return view('backend.user.listuser', $data);
     }
 
@@ -96,24 +97,49 @@ class UserController extends Controller
         return view('backend.user.adduser');
     }
 
-    public function postAddUser(UserRequest $request)
+    public function postAddUser(Request $request)
     {
-        dd($request->all());
-        // $user = new User;
-        // $user->email = $request->email;
-        // $user->password = bcrypt($request->password);
-        // $user->name = $request->name;
-        // $user->address = $request->address;
-        // $user->phone = $request->address;
-        // $user->level = $request->level;
-        // $user->save();
-        // dd($user);
-        // return redirect('/admin/user')->with('thongbao', 'Đã thêm thành công');
+        echo "Them thanh vien";
+        // dd($request->all());
+        $user = new User;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->name = $request->name;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+        $user->level = $request->level;
+        $user->save();
+        // dd($user->toarray());
+        return redirect('/admin/user')->with('thongbao', 'Đã thêm thành công');
     }
 
-    public function getEditUser()
+    public function getEditUser($id)
     {
-        return view('backend.user.edituser');
+        $data['user'] = User::findOrFail($id);
+        return view('backend.user.edituser', $data);
+    }
+
+    public function postEditUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->email = $request->email;
+        if ($request->password != '') {
+            $user->password = $request->password;
+        }
+        $user->name = $request->name;   
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->level = $request->level;
+        $user->update();
+        return redirect()->back()->with('thongbao', 'Đã sửa thành công!');
+    }
+
+    public function delUser($id)
+    {
+        // $user = User::find($id);
+        // $user->delete();
+        User::destroy($id);
+        return redirect()->back()->with('thongbao', 'Đã xóa thành công!');
     }
 
 }

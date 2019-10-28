@@ -7,6 +7,7 @@ use App\Http\Requests\Backend\ProductRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -103,12 +104,78 @@ class ProductController extends Controller
     {
         // dd($request->all());
         // return redirect('/admin/product')->with('thongbao', )
+        $product = new Product;
+        $product->code = $request->code;
+        $product->name = $request->name;
+        $product->slug = Str::slug($request->name, '-');
+        $product->price = $request->price;
+        $product->featured = $request->featured;
+        $product->state = $request->state;
+        $product->info = $request->info;
+        $product->description = $request->describe;
+
+        if ($request->hasFile('img')) {
+            // lưu request vào biến file
+            $file = $request->img;
+            // Lấy tên file, hàm getClientOriginnalExtension() dùng để lấy phần mở rộng của file
+            $fileName = Str::slug($request->name,'-').'.'.$file->getClientOriginalExtension();
+            // lưu file vào thư mục backend/img
+            $file->move('backend/img', $fileName);
+            // lưu tên file vào cơ sở dữ liệu
+            $product->image = $fileName;
+        } else {
+            $product->image = 'no-img.jpg';
+        }
+        
+        // $product->image = 
+        $product->category_id = $request->category;
+
+        $product->save();
+
+        return redirect('/admin/product')->with('thongbao', 'Đã thêm thành công');
     }
 
-    public function getEditProduct()
+    public function getEditProduct($product_id)
     {
-        return view('backend.product.editproduct');
+        $data['categories'] = Category::all();
+        $data['product'] = Product::findOrFail($product_id);
+        return view('backend.product.editproduct', $data);
     }
 
+    public function postEditProduct(ProductRequest $request, $product_id)
+    {
+        $product = Product::find($product_id);
+        $product->code = $request->code;
+        $product->name = $request->name;
+        $product->slug = Str::slug($request->name, '-');
+        $product->price = $request->price;
+        $product->featured = $request->featured;
+        $product->state = $request->state;
+        $product->info = $request->info;
+        $product->description = $request->describe;
+
+        if ($request->hasFile('img')) {
+            if($product->image != 'no-img.jpg')
+            {
+                unlink('backend/img'.$product->image);
+            }
+            // lưu request vào biến file
+            $file = $request->img;
+            // Lấy tên file, hàm getClientOriginnalExtension() dùng để lấy phần mở rộng của file
+            $fileName = Str::slug($request->name,'-').'.'.$file->getClientOriginalExtension();
+            // lưu file vào thư mục backend/img
+            $file->move('backend/img', $fileName);
+            // lưu tên file vào cơ sở dữ liệu
+            $product->image = $fileName;
+        } 
+        
+        // $product->image = 
+        $product->category_id = $request->category;
+
+        $product->save();
+
+        return redirect()->back()->with('thongbao', 'Cập nhật thành công!');
+
+    }
 
 }

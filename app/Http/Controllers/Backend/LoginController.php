@@ -28,6 +28,8 @@ class LoginController extends Controller
         $password = $request->password;
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            // Auth::check() sẽ bằng true
+            // Auth::user() lấy ra thông tin người đăng nhập từ bảng model liên kết
             return redirect('admin');
         }
         else {
