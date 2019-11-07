@@ -42,11 +42,11 @@
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li class="active"><a href="index.html">Trang chủ</a></li>
+								<li class="active"><a href="/">Trang chủ</a></li>
 								<li class="has-dropdown">
-									<a href="shop.html">Cửa hàng</a>
+									<a href="/product/shop">Cửa hàng</a>
 									<ul class="dropdown">
-										<li><a href="cart.html">Giỏ hàng</a></li>
+										<li><a href="/cart">Giỏ hàng</a></li>
 										<li><a href="checkout.html">Thanh toán</a></li>
 
 									</ul>
@@ -211,6 +211,7 @@
 	</div>
 
 
+	@section('script')
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -231,6 +232,8 @@
 	<script src="js/jquery.stellar.min.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+	@show
+	{{-- @endsection --}}
 
 </body>
 

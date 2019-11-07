@@ -23,6 +23,9 @@ Route::get('/contact', 'Frontend\HomeController@getContact');
 // Cart routes
 Route::group(['prefix' => 'cart'], function() {
     Route::get('/', 'Frontend\CartController@getCart');
+    Route::get('/add', 'Frontend\CartController@addCart');
+    Route::get('/update/{rowId}/{qty}', 'Frontend\CartController@updateCart');
+    Route::get('/del/{rowId}', 'Frontend\CartController@delCart');
 });
 
 // Checkout routes
@@ -35,7 +38,9 @@ Route::group(['prefix' => 'checkout'], function() {
 // Product routes
 Route::group(['prefix' => 'product'], function() {
     Route::get('/shop', 'Frontend\ProductController@getShop');
-    Route::get('/detail', 'Frontend\ProductController@getDetail');
+    Route::get('/shop/{slug}', 'Frontend\ProductController@getCatPrd');
+    // Route::get('/{id}', 'Frontend\ProductController@getDetail');
+    Route::get('/detail/{slug}', 'Frontend\ProductController@getDetail');
 });
 
 
@@ -62,8 +67,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogin'], function () {
     // Order
     Route::group(['prefix' => 'order'], function () {
         Route::get('/', 'Backend\OrderController@getOrder');
-        Route::get('/detail', 'Backend\OrderController@getDetailOrder');
+        Route::get('/detail/{id}', 'Backend\OrderController@getDetailOrder');
         Route::get('/processed', 'Backend\OrderController@getProcessed');
+        Route::get('/xu-ly/{id}', 'Backend\OrderController@xuLy'); 
     });
 
     // Product
